@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('maildatas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('emailAddress');
-            $table->string('password');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
+            $table->foreignId('users_id')->constrained();
+            $table->foreignId('categories_id')->constrained();
+            $table->dateTime('date');
+            $table->string('title');
+            $table->text('message');
+            $table->dateTime('deadline')->nullable();
+            $table->string('link');
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('maildatas');
     }
 };

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MaildataController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MaildataController::class, 'index']);
+Route::get('/maildatas/entry', [MaildataController::class, 'entry']);
+Route::post('/maildatas', [MaildataController::class, 'store']);
+Route::get('/maildatas/{maildata}', [MaildataController::class, 'show']);
+Route::get('/categories/{category}', [CategoryController::class, 'index']);
+
+?>

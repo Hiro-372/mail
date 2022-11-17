@@ -2,15 +2,28 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
+use App\Models\Maildata;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    
+    public function categories()
+    {
+        return $this->hasMany(Category::class,'categories_id');
+    }
+
+    public function maildatas()
+    {
+        return $this->hasMany(Category::class,'mamildatas_id');
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -42,3 +55,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
+
+?>

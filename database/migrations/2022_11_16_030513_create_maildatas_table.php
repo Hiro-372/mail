@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('message');
             $table->dateTime('deadline')->nullable();
             $table->string('link');
+            $table->timestamps();
         });
     }
 

@@ -38,6 +38,22 @@ class MaildataController extends Controller
         $maildata -> fill($input) -> save();
         return redirect('/maildatas/' . $maildata -> id);
     }
+    
+    public function edit(Maildata $maildata, Category $category, User $user)
+    {
+        return view('maildatas/edit')->with([
+            'maildata' => $maildata,
+            'categories' => $category -> get(),
+            'users' => $user -> get(),
+        ]);
+    }
+    
+    public function update(MaildataRequest $request, Maildata $maildata)
+    {
+        $input_maildata = $request['maildata'];
+        $maildata -> fill($input_maildata) -> save();
+        return redirect('/maildatas/' . $maildata -> id);
+    }
 }
 
 ?>

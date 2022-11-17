@@ -20,5 +20,6 @@ Route::get('/maildatas/entry', [MaildataController::class, 'entry']);
 Route::post('/maildatas', [MaildataController::class, 'store']);
 Route::get('/maildatas/{maildata}', [MaildataController::class, 'show']);
 Route::get('/categories/{category}', [CategoryController::class, 'index']);
-
+Route::get('/maildatas/{maildata}/edit', [MaildataController::class, 'edit']);
+Route::put('/maildatas/{maildata}', [MaildataController::class, 'update']);
 ?>

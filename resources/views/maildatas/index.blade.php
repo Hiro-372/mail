@@ -18,12 +18,25 @@
                     </h2>
                     <p class = 'message'>{{ $maildata->message }}</p>
                     <p class = 'date'>{{ $maildata->date }}</p>
+                    <p>カテゴリー:
                     <a href="/categories/{{ $maildata->category->id}}">{{ $maildata->category->name }}</a>
+                    </p>
                 </div>
             @endforeach
         </div>
-    
-        <a href='/maildatas/entry'>entry</a>
+        
+        <div class="mail">
+            <h3>メール</h3>
+            <a href='/maildatas/entry'>新規登録</a>
+            <a href=''>変更</a>
+            <a href=''>削除</a>
+        </div>
+        
+        <div class="category">
+            <h3>カテゴリー</h3>
+            <a href=''>新規作成</a>
+            <a href=''>変更</a>
+            <a href=''>削除</a>
     
         <div class='paginate'>
             {{ $maildatas->links() }}

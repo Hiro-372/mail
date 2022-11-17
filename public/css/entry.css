@@ -1,0 +1,19 @@
+h1 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #66CCFF;
+    background: whitesmoke;
+    border-left: double 7px #4ec4d3;
+    border-right: double 7px #4ec4d3;
+}
+h2 {
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    color: #232323;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
+}
+input[type="submit"],.back {
+    position: relative;
+    top: 15px;
+}

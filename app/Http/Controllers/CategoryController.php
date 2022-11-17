@@ -13,6 +13,14 @@ class CategoryController extends Controller
             'maildatas' => $category -> getByCategory(),
         ]);
     }
+    
+    public function entry(Category $category, User $user)
+    {
+        return view('categories/entry') -> with([
+            'categories' => $category -> get(),
+            'users' => $user -> get()
+        ]);
+    }    
 
 }
 ?>

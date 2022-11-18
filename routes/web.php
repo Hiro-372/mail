@@ -22,4 +22,5 @@ Route::get('/maildatas/{maildata}', [MaildataController::class, 'show']);
 Route::get('/categories/{category}', [CategoryController::class, 'index']);
 Route::get('/maildatas/{maildata}/edit', [MaildataController::class, 'edit']);
 Route::put('/maildatas/{maildata}', [MaildataController::class, 'update']);
+Route::delete('/maildatas/{maildata}', [MaildataController::class, 'delete']);
 ?>

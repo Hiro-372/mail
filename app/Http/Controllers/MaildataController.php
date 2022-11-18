@@ -54,6 +54,12 @@ class MaildataController extends Controller
         $maildata -> fill($input_maildata) -> save();
         return redirect('/maildatas/' . $maildata -> id);
     }
+    
+    public function delete(Maildata $maildata)
+    {
+        $maildata -> delete();
+        return redirect('/');
+    }
 }
 
 ?>

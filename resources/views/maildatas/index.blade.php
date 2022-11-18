@@ -6,6 +6,7 @@
         <title>メール一覧</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <script type="text/javascript" src="../js/index.js"></script>
     </head>
     
     <body>
@@ -18,9 +19,16 @@
                     </h2>
                     <p class = 'message'>{{ $maildata->message }}</p>
                     <p class = 'date'>{{ $maildata->date }}</p>
+                    
                     <p>カテゴリー:
                     <a href="/categories/{{ $maildata->category->id}}">{{ $maildata->category->name }}</a>
                     </p>
+                    
+                    <form action="/maildatas/{{ $maildata->id }}" id="form_{{ $maildata->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="deleteMaildata({{ $maildata->id }})">削除</button>
+                    </form>
                 </div>
             @endforeach
         </div>

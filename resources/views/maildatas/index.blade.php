@@ -7,6 +7,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <script type="text/javascript" src="../js/index.js"></script>
+        <link href="../css/index.css" rel="stylesheet">
     </head>
     
     <body>
@@ -42,9 +43,10 @@
         
         <div class="category">
             <h3>カテゴリー</h3>
-            <a href=''>新規作成</a>
+            <a href='/categories/create'>新規作成</a>
             <a href=''>変更</a>
             <a href=''>削除</a>
+        </div>
     
         <div class='paginate'>
             {{ $maildatas->links() }}

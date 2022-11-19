@@ -25,5 +25,11 @@ class Category extends Model
     {
         return $this -> maildatas() -> with('category') -> orderBy('updated_at', 'DESC') -> paginate($limit_count);
     }
+    
+    protected $fillable = [
+        'name',
+        'explanatory',
+        'users_id',
+    ];
 }
 ?>

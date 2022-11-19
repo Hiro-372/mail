@@ -28,7 +28,7 @@ class MaildataController extends Controller
     {
         return view('maildatas/entry') -> with([
             'categories' => $category -> get(),
-            'users' => $user -> get()
+            'users' => $user -> get(),
         ]);
     }
     

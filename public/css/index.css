@@ -1,0 +1,23 @@
+.mail {
+    border-top: 3px solid #333;
+}
+.mail a {
+    background: aqua;
+    padding: 10px 30px;
+    display: inline-block;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.category a {
+    background: orange;
+    padding: 10px 30px;
+    display: inline-block;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.maildata {
+    border-top: 3px solid #333;
+    margin-bottom: 20px;
+}

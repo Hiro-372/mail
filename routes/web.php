@@ -16,6 +16,7 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', [MaildataController::class, 'index']);
+Route::get('/maildatas/home', [MaildataController::class, 'home']);
 Route::get('/maildatas/entry', [MaildataController::class, 'entry']);
 Route::post('/maildatas', [MaildataController::class, 'store']);
 Route::get('/maildatas/{maildata}', [MaildataController::class, 'show']);
@@ -23,7 +24,10 @@ Route::get('/maildatas/{maildata}/edit', [MaildataController::class, 'edit']);
 Route::put('/maildatas/{maildata}', [MaildataController::class, 'update']);
 Route::post('/categories', [CategoryController::class, 'store']);
 Route::get('/categories/list', [CategoryController::class, 'lists']);
+Route::get('/categories/{category}/edit', [CategoryController::class, 'edit']);
 Route::get('/categories/create', [CategoryController::class, 'create']);
+Route::put('/categories/{category}', [CategoryController::class, 'update']);
 Route::get('/categories/{category}', [CategoryController::class, 'index']);
-Route::delete('/maildatas/{maildata}', [MaildataController::class, 'delete']);
+Route::delete('maildatas/{maildata}', [MaildataController::class, 'delete']);
+Route::delete('categories/{category}', [CategoryController::class, 'delete']);
 ?>

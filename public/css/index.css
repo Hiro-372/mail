@@ -21,3 +21,13 @@
     border-top: 3px solid #333;
     margin-bottom: 20px;
 }
+
+#edit{
+    background: greenyellow;
+    padding: 2px 2px;
+    border: 2px solid greenyellow;
+    display: inline-block;
+    border-radius: 2px;
+    text-decoration: none;
+    color: black;
+}

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Maildata;
 use App\Models\Category;
 use App\Models\User;
@@ -13,6 +14,7 @@ class CategoryController extends Controller
     {
         return view('categories.index') -> with([
             'maildatas' => $category -> getByCategory(),
+            'category' => $category,
         ]);
     }
     
@@ -45,6 +47,27 @@ class CategoryController extends Controller
             'categories' => $category -> get(),
         ]);
     }
+    
+    public function edit(Category $category, User $user)
+    {
+        return view('categories/edit') -> with([
+            'categories' => $category,
+            'users' => $user -> get(),
+        ]);
+    }
+    
+    public function update(CategoryRequest $request, Category $category)
+    {
+        $input_category = $request['category'];
+        $category -> fill($input_category) -> save();
+        return redirect('/categories/list');
+    }    
 
+    public function delete(Category $category)
+    {
+        $category -> delete();
+        return redirect('/categories/list');
+    }    
 }
+
 ?>

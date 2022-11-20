@@ -16,7 +16,7 @@ class CategoryRequest extends FormRequest
         return [
             'category.name' => 'required|string|max:100',
             'category.explanatory' => 'required|string|max:3000',
-            'category.users_id' => 'required|string|max:100',        
+            'category.users_id' => 'required|string|max:100',
         ];
     }
 }

@@ -17,6 +17,14 @@ class MaildataController extends Controller
         ]);
     }
     
+    public function home(Maildata $maildata, Category $category)
+    {
+        return view('maildatas/home') -> with([
+            'maildatas' => $maildata -> get(),
+            'categories' => $category -> get(),
+        ]);
+    }
+    
     public function show(Maildata $maildata)
     {
         return view('maildatas/show') -> with([
@@ -60,6 +68,7 @@ class MaildataController extends Controller
         $maildata -> delete();
         return redirect('/');
     }
+    
 }
 
 ?>

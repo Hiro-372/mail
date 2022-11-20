@@ -7,6 +7,7 @@
         <title>件名{{ $maildatas->title }}</title>
         <!-- Fonts -->
         <link href='../css/show.css' rel="stylesheet">
+        <script type="text/javascript" src="../js/index.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     
@@ -27,10 +28,21 @@
             </p>
         </div>
         
+        <div class="mailLink">
+            <p>メールリンク：
+                <a href="{{ $maildatas->link }}" target="_blank" rel="noopener noreferrer">{{ $maildatas->link }}</a>
+            </p>
+        </div>
+        
         <div class="footer">
             <p class="edit">[<a href="/maildatas/{{ $maildatas->id }}/edit">編集</a>]</p>
-            <a href="">[削除]</p>
-            <a href="/">[戻る]</a>
+            <form action="/maildatas/{{ $maildatas->id }}" id="form_{{ $maildatas->id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="button" onclick="deleteMaildata({{ $maildatas->id }})">削除</button>
+            </form>
+            <a href="/">[メール一覧へ]</a>
+            <a href="/categories/list">[カテゴリー一覧へ]</a>
         </div>
     </body>
     

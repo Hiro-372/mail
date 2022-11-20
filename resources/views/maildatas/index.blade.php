@@ -25,6 +25,8 @@
                     <a href="/categories/{{ $maildata->category->id}}">{{ $maildata->category->name }}</a>
                     </p>
                     
+                    <a id="edit" href="/maildatas/{{ $maildata->id }}/edit">編集</a>
+                    
                     <form action="/maildatas/{{ $maildata->id }}" id="form_{{ $maildata->id }}" method="post">
                         @csrf
                         @method('DELETE')
@@ -37,16 +39,15 @@
         <div class="mail">
             <h3>メール</h3>
             <a href='/maildatas/entry'>新規登録</a>
-            <a href=''>変更</a>
             <a href=''>削除</a>
         </div>
         
         <div class="category">
             <h3>カテゴリー</h3>
             <a href='/categories/create'>新規作成</a>
-            <a href=''>変更</a>
-            <a href=''>削除</a>
         </div>
+        
+        <a href='/maildatas/home'>HOME</a>
     
         <div class='paginate'>
             {{ $maildatas->links() }}

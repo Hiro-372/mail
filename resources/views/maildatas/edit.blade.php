@@ -56,7 +56,7 @@
             </form>
         </div>
         
-        <div class="back"><a href="/">戻る</div>
+        <div class="back"><a href="/">[メール一覧へ]</div>
         
     </body>
     

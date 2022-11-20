@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <title>カテゴリー一覧</title>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <script type="text/javascript" src="../js/index.js"></script>
     </head>
     
     <body>
@@ -19,10 +20,16 @@
                     <p>カテゴリー説明文</p>
                     <p class = 'explanatory'>{{ $category->explanatory }}</p>
                 </div>
+                
+                <form action="/categories/{{ $category->id }}" id="form_{{ $category->id }}" method="post">
+                    @csrf
+                    @method('DELETE')            
+                    <button type="button" onclick="deleteCategory({{ $category->id }})">削除</button>
+                </form>
             @endforeach
         </div>
         
-        <div class="back"><a href="/">戻る</div>
-        
+        <a href="/categories/create">カテゴリー作成</a>
+        <div class="back"><a href="/">[メール一覧へ]</div>
     </body>
 </html>

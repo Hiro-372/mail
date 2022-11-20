@@ -9,7 +9,7 @@
     </head>
     
     <body>
-        <h1>メール一覧</h1>
+        <h1>{{ $category->name }}メール一覧</h1>
         <div class='maildatas'>
             @foreach($maildatas as $maildata)
                 <div class='maildata'>
@@ -27,20 +27,23 @@
         <div class="mail">
             <h3>メール</h3>
             <a href='/maildatas/entry'>新規登録</a>
-            <a href=''>変更</a>
             <a href=''>削除</a>
         </div>
         
         <div class="category">
             <h3>カテゴリー</h3>
-            <a href=''>新規作成</a>
-            <a href=''>変更</a>
-            <a href=''>削除</a>    
+            <a href='/categories/create'>新規作成</a>
+            <a href='/categories/{{ $maildata->category->id }}/edit'>変更</a>
+        
+        <div class="links">
+            <a href="/categories/list">[カテゴリー一覧へ]</a>
+            <a href="/">[メール一覧へ]</a>
+        </div>
     
         <div class='paginate'>
             {{ $maildatas->links() }}
         </div>
-    
+        
     </body>
     
 </html>

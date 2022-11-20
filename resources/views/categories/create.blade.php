@@ -34,7 +34,10 @@
         <input type="submit" value="作成"/>
         </form>
         
-        <div class="back"><a href="/">戻る</div>
+        <div class="links">
+            <a href="/">[メール一覧へ]</div>
+            <a href="/categories/list">[カテゴリー一覧へ]</a>
+        </div>
         
     </body>
     

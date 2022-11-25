@@ -28,6 +28,14 @@
             </p>
         </div>
         
+        <div class="deadline">
+            <p>提出期限日：{{ $maildatas->deadline }}
+                <br>
+                    <p class="caution">※提出期限日がない場合は何も表示されません。</p>
+                </br>
+            </p>
+        </div>
+        
         <div class="mailLink">
             <p>メールリンク：
                 <a href="{{ $maildatas->link }}" target="_blank" rel="noopener noreferrer">{{ $maildatas->link }}</a>

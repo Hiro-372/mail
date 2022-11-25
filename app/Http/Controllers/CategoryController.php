@@ -10,19 +10,23 @@ use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
-    public function index(Category $category)
+    public function index(Maildata $maildata, Request $request, Category $category)
     {
-        return view('categories.index') -> with([
+        $keyword = $request->input('keyword');
+        
+        $query = Maildata::query();
+        
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%");
+        }
+        
+        $maildatas = $query->paginate(5);
+        
+        return view('categories/index', compact('maildatas', 'keyword'))
+        ->with([
+            'maildata' => $maildata,
             'maildatas' => $category -> getByCategory(),
             'category' => $category,
-        ]);
-    }
-    
-    public function entry(Category $category, User $user, Maildata $maildata)
-    {
-        return view('categories/entry') -> with([
-            'categories' => $category -> get(),
-            'users' => $user -> get(),
         ]);
     }
     
@@ -67,7 +71,7 @@ class CategoryController extends Controller
     {
         $category -> delete();
         return redirect('/categories/list');
-    }    
+    }
 }
 
 ?>

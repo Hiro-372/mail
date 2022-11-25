@@ -11,11 +11,17 @@
     </head>
     
     <body>
+        <form action="/" method="GET">
+            <input type="text" name="keyword" value="{{ $keyword }}">
+            <input type="submit" value="検索">
+        </form>
+        
         <h1>メール一覧</h1>
         <div class='maildatas'>
-            @foreach($maildatas as $maildata)
+            @forelse($maildatas as $maildata)
                 <div class='maildata'>
                     <h2 class = 'title'>
+                        <input class="title" id="title" type="checkbox" name="title[]" form="deleteMail" value={{ $maildata->id }}>
                         <a href="/maildatas/{{ $maildata->id }}"> {{ $maildata->title}}</a>
                     </h2>
                     <p class = 'message'>{{ $maildata->message }}</p>
@@ -33,26 +39,36 @@
                         <button type="button" onclick="deleteMaildata({{ $maildata->id }})">削除</button>
                     </form>
                 </div>
-            @endforeach
+            @empty
+                <h2 id="message">メールデータが見つかりません！
+                <br>
+                    <a href="/">[戻る]</a>
+                </br>
+                </h2>
+            @endforelse
         </div>
         
         <div class="mail">
             <h3>メール</h3>
-            <a href='/maildatas/entry'>新規登録</a>
-            <a href=''>削除</a>
+            <a href='/maildatas/create'>新規登録</a>
+            <form name="deleteMail" id="deleteMail" action="/maildatas/{{ $maildata->id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit">一括削除</button>
+            </form>
         </div>
-        
+
         <div class="category">
             <h3>カテゴリー</h3>
             <a href='/categories/create'>新規作成</a>
         </div>
         
-        <a href='/maildatas/home'>HOME</a>
+        <a href='/maildatas/top'>TOPページへ</a>
     
         <div class='paginate'>
-            {{ $maildatas->links() }}
+            {{ $maildatas->appends(request()->input())->links() }}
         </div>
-    
+        
     </body>
     
 </html>

@@ -6,6 +6,7 @@
         <title>カテゴリー一覧</title>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <script type="text/javascript" src="../js/index.js"></script>
+        <link href="../css/list.css" rel="stylesheet">        
     </head>
     
     <body>
@@ -29,7 +30,11 @@
             @endforeach
         </div>
         
-        <a href="/categories/create">カテゴリー作成</a>
-        <div class="back"><a href="/">[メール一覧へ]</div>
+        <div class="links">
+            <a id="create" href="/categories/create">[カテゴリー作成]</a>
+            <br>
+                <a href="/">[メール一覧へ]</a>
+            </br>
+        </div>
     </body>
 </html>

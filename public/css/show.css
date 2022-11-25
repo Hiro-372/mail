@@ -6,3 +6,8 @@
     background-color: whitesmoke;
     font-size:20px;
 }
+
+.caution {
+    color: red;
+    font-size: 14px;
+}

@@ -17,3 +17,8 @@ input[type="submit"],.back {
     position: relative;
     top: 15px;
 }
+
+.deadline p {
+    color: red;
+    font-size: 3px;
+}

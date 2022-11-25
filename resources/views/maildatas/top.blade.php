@@ -20,7 +20,7 @@
         
         <div class="mail">
             <h2>メール</h2>
-            <a href='/maildatas/entry'>新規登録</a>
+            <a href='/maildatas/create'>新規登録</a>
         </div>
         
         <div class="category">

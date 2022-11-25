@@ -10,16 +10,26 @@ use App\Http\Requests\MaildataRequest;
 
 class MaildataController extends Controller
 {
-    public function index(Maildata $maildata)
+    public function index(Maildata $maildata, Request $request)
     {
-        return view('maildatas/index') -> with([
-            'maildatas' => $maildata -> getPaginateByLimit(),
+        $keyword = $request->input('keyword');
+        
+        $query = Maildata::query();
+        
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%");
+        }
+        
+        $maildatas = $query->paginate(5);
+        
+        return view('maildatas/index', compact('maildatas', 'keyword'))
+        ->with(['maildata' => $maildata,
         ]);
     }
     
-    public function home(Maildata $maildata, Category $category)
+    public function top(Maildata $maildata, Category $category)
     {
-        return view('maildatas/home') -> with([
+        return view('maildatas/top') -> with([
             'maildatas' => $maildata -> get(),
             'categories' => $category -> get(),
         ]);
@@ -32,9 +42,9 @@ class MaildataController extends Controller
         ]);
     }
     
-    public function entry(Category $category, User $user)
+    public function create(Category $category, User $user)
     {
-        return view('maildatas/entry') -> with([
+        return view('maildatas/create') -> with([
             'categories' => $category -> get(),
             'users' => $user -> get(),
         ]);
@@ -63,9 +73,18 @@ class MaildataController extends Controller
         return redirect('/maildatas/' . $maildata -> id);
     }
     
-    public function delete(Maildata $maildata)
+    public function delete(Maildata $maildata, Request $request)
     {
-        $maildata -> delete();
+        dd($request);
+        if (empty($maildata) == true) {
+            echo "データがありません。\nメール一覧に戻ります。";
+            return redirect('/');
+        } elseif (!empty($request["title"]) == true) {
+            foreach ($request["title"] as $value) {
+                $maildata::where('id',$value) -> delete(); }
+        } else {
+            $maildata -> delete();
+        }
         return redirect('/');
     }
     

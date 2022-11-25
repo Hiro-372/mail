@@ -28,6 +28,11 @@
                     <input type='text' name='maildata[date]' value="{{ $maildata->date }}">
                 </div>
                 
+                <div class="content__deadline">
+                    <h2>提出期限日</h2>
+                    <input type='text' name='maildata[deadline]' value="{{ $maildata->deadline }}">
+                </div>
+                
                 <div class='content__link'>
                     <h2>メールへのリンク</h2>
                     <input type='text' name='maildata[link]' value="{{ $maildata->link }}">

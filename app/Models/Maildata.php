@@ -37,6 +37,7 @@ class Maildata extends Model
         'title',
         'message',
         'date',
+        'deadline',
         'link',
         'categories_id',
         'users_id',

@@ -19,7 +19,7 @@
                 </div>
         
                 <div class='content__explanatory'>
-                    <h2>本文</h2>
+                    <h2>説明文</h2>
                     <input type='text' name='category[explanatory]' value="{{ $categories->explanatory }}">
                 </div>
                 

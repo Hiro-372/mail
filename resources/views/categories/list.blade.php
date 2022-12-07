@@ -22,6 +22,7 @@
                     <p class = 'explanatory'>{{ $category->explanatory }}</p>
                 </div>
                 
+                <a href="/categories/{{ $category->id }}/edit">編集</a>
                 <form action="/categories/{{ $category->id }}" id="form_{{ $category->id }}" method="post">
                     @csrf
                     @method('DELETE')            

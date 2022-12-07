@@ -10,20 +10,16 @@ use App\Http\Requests\MaildataRequest;
 
 class MaildataController extends Controller
 {
-    public function index(Maildata $maildata, Request $request)
+    public function index(Maildata $maildata, Request $request, Category $category)
     {
         $keyword = $request->input('keyword');
         
-        $query = Maildata::query();
+        $maildatas = empty($keyword) == true ? $maildata -> getByMaildata() : $maildata -> getSearchByMaildata($keyword);
         
-        if(!empty($keyword)) {
-            $query->where('title', 'LIKE', "%{$keyword}%");
-        }
-        
-        $maildatas = $query->paginate(5);
-        
-        return view('maildatas/index', compact('maildatas', 'keyword'))
-        ->with(['maildata' => $maildata,
+        return view('maildatas/index')->with([
+            'maildatas' => $maildatas,
+            'keyword' => $keyword,
+            'category' => $category,
         ]);
     }
     
@@ -75,9 +71,7 @@ class MaildataController extends Controller
     
     public function delete(Maildata $maildata, Request $request)
     {
-        dd($request);
         if (empty($maildata) == true) {
-            echo "データがありません。\nメール一覧に戻ります。";
             return redirect('/');
         } elseif (!empty($request["title"]) == true) {
             foreach ($request["title"] as $value) {

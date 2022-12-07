@@ -1,3 +1,7 @@
+<x-app-layout>
+    <x-slot name="header">
+        {{ __('Index') }}
+    </x-slot>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     
@@ -28,7 +32,7 @@
                     <p class = 'date'>{{ $maildata->date }}</p>
                     
                     <p>カテゴリー:
-                    <a href="/categories/{{ $maildata->category->id}}">{{ $maildata->category->name }}</a>
+                    <a href="/categories/{{ $maildata->category->id }}">{{ $maildata->category->name }}</a>
                     </p>
                     
                     <a id="edit" href="/maildatas/{{ $maildata->id }}/edit">編集</a>
@@ -72,3 +76,4 @@
     </body>
     
 </html>
+</x-app-layout>

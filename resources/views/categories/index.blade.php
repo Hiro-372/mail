@@ -11,7 +11,7 @@
     </head>
     
     <body>
-        <form action="/" method="GET">
+        <form action="/categories/{{ $category->id }}" method="GET">
             <input type="text" name="keyword" value="{{ $keyword }}">
             <input type="submit" value="検索">
         </form>
@@ -32,11 +32,12 @@
                     </p>
                     
                     <a id="edit" href="/maildatas/{{ $maildata->id }}/edit">編集</a>
-                    
-                    <form action="/maildatas/{{ $maildata->id }}" id="form_{{ $maildata->id }}" method="post">
+
+                    <form action="/categories/{{ $category->id }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="button" onclick="deleteMaildata({{ $maildata->id }})">削除</button>
+                        <input name="deleteMailByCategory" type="hidden" value="{{ $maildata->id }}">
+                        <button type="submit">削除</button>
                     </form>
                 </div>
             @empty
@@ -47,7 +48,7 @@
         <div class="mail">
             <h3>メール</h3>
             <a href='/maildatas/create'>新規登録</a>
-            <form name="deleteMail" id="deleteMail" action="/maildatas/{{ $maildata->id }}" method="post">
+            <form name="deleteMail" id="deleteMail" action="/categories/{{ $category->id }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit">一括削除</button>
@@ -58,7 +59,7 @@
             <h3>カテゴリー</h3>
             <a href='/categories/create'>新規作成</a>
             <br>
-                <a href='/categories/{{ $maildata->category->id }}/edit'>変更</a>
+                <a href='/categories/{{ $category->id }}/edit'>変更</a>
             </br>
         </div>
         

@@ -28,6 +28,11 @@ class Category extends Model
         return $this -> maildatas() -> with('category') -> orderBy('updated_at', 'DESC') -> paginate($limit_count);
     }
     
+    public function getSearchByCategory($keyword, int $limit_count = 5)
+    {
+        return $this -> maildatas() -> with('category') -> orderBy('updated_at', 'DESC') -> where('title', 'LIKE', "%{$keyword}%") -> paginate($limit_count);
+    }
+    
     protected $fillable = [
         'name',
         'explanatory',

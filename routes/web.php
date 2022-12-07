@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaildataController;
 use App\Http\Controllers\CategoryController;
@@ -14,35 +15,35 @@ use App\Http\Controllers\CategoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::controller(MaildataController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/maildatas/top', 'top');
+    Route::get('/maildatas/create', 'create');
+    Route::post('/maildatas', 'store');
+    Route::get('/maildatas/{maildata}', 'show');
+    Route::get('/maildatas/{maildata}/edit','edit');
+    Route::put('/maildatas/{maildata}', 'update');
+    Route::delete('/maildatas/{maildata}', 'delete');
+});
 
-Route::get('/', [MaildataController::class, 'index']);
+Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
+    Route::post('/categories', 'store');
+    Route::get('/categories/list', 'lists');
+    Route::get('/categories/{category}/edit', 'edit');
+    Route::get('/categories/create', 'create');
+    Route::put('/categories/{category}', 'update');
+    Route::get('/categories/{category}', 'index');
+    Route::delete('/categories/{category}', 'delete');
+});
 
-Route::get('/maildatas/top', [MaildataController::class, 'top']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/maildatas/create', [MaildataController::class, 'create']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::post('/maildatas', [MaildataController::class, 'store']);
-
-Route::get('/maildatas/{maildata}', [MaildataController::class, 'show']);
-
-Route::get('/maildatas/{maildata}/edit', [MaildataController::class, 'edit']);
-
-Route::put('/maildatas/{maildata}', [MaildataController::class, 'update']);
-
-Route::post('/categories', [CategoryController::class, 'store']);
-
-Route::get('/categories/list', [CategoryController::class, 'lists']);
-
-Route::get('/categories/{category}/edit', [CategoryController::class, 'edit']);
-
-Route::get('/categories/create', [CategoryController::class, 'create']);
-
-Route::put('/categories/{category}', [CategoryController::class, 'update']);
-
-Route::get('/categories/{category}', [CategoryController::class, 'index']);
-
-Route::delete('/maildatas/{maildata}', [MaildataController::class, 'delete']);
-
-Route::delete('/categories/{category}', [CategoryController::class, 'delete']);
-
-?>
+require __DIR__.'/auth.php';

@@ -23,14 +23,14 @@ class Maildata extends Model
         return $this -> belongsTo(User::class,'users_id');
     }
     
-    public function getByLimit(int $limit_count = 5)
+    public function getByMaildata(int $limit_count = 5)
     {
-        return $this -> limit($limit_count) -> get();
+        return $this -> orderBy('updated_at') -> paginate($limit_count);
     }
     
-    public function getPaginateByLimit(int $limit_count = 5)
+    public function getSearchByMaildata($keyword, int $limit_count = 5)
     {
-        return $this::with('category') -> orderBy('updated_at','DESC') -> paginate($limit_count);
+        return $this -> orderBy('updated_at', 'DESC') -> where('title', 'LIKE', "%{$keyword}%") -> paginate($limit_count);
     }
     
     protected $fillable = [

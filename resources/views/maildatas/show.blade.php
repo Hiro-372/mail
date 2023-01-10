@@ -47,7 +47,9 @@
         </div>
         
         <div class="footer">
-            <p class="edit">[<a href="/maildatas/{{ $maildatas->id }}/edit">編集</a>]</p>
+            @can('isCorrectUser', $maildatas)
+                <p class="edit">[<a href="/maildatas/{{ $maildatas->id }}/edit">編集</a>]</p>
+            @endcan
             <a href="/">[メール一覧へ]</a>
             <a href="/categories/list">[カテゴリー一覧へ]</a>
         </div>

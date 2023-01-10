@@ -23,19 +23,19 @@ Route::controller(MaildataController::class)->middleware(['auth'])->group(functi
     Route::get('/maildatas/create', 'create');
     Route::post('/maildatas', 'store');
     Route::get('/maildatas/{maildata}', 'show');
-    Route::get('/maildatas/{maildata}/edit','edit');
-    Route::put('/maildatas/{maildata}', 'update');
-    Route::delete('/maildatas/{maildata}', 'delete');
+    Route::get('/maildatas/{maildata}/edit','edit')->can('isCorrectUser','maildata');
+    Route::put('/maildatas/{maildata}', 'update')->can('isCorrectUser','maildata');
+    Route::delete('/maildatas/{maildata}', 'delete')->can('isCorrectUser','maildata');
 });
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
     Route::post('/categories', 'store');
     Route::get('/categories/list', 'lists');
-    Route::get('/categories/{category}/edit', 'edit');
+    Route::get('/categories/{category}/edit', 'edit')->can('isCorrectUser','maildata');
     Route::get('/categories/create', 'create');
-    Route::put('/categories/{category}', 'update');
+    Route::put('/categories/{category}', 'update')->can('isCorrectUser','maildata');
     Route::get('/categories/{category}', 'index');
-    Route::delete('/categories/{category}', 'delete');
+    Route::delete('/categories/{category}', 'delete')->can('isCorrectUser','maildata');
 });
 
 Route::controller(GoogleMailController::class)->middleware(['auth'])->group(function(){

@@ -35,7 +35,9 @@
                     <a href="/categories/{{ $maildata->category->id }}">{{ $maildata->category->name }}</a>
                     </p>
                     
-                    <a id="edit" href="/maildatas/{{ $maildata->id }}/edit">編集</a>
+                    @can('edit', $maildata)
+                        <a id="edit" href="/maildatas/{{ $maildata->id }}/edit">編集</a>
+                    @endcan
 
                 </div>
             @empty

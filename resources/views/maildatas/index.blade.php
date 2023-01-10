@@ -37,7 +37,9 @@
                         </p>
                     </div>
                     
-                    <a id="edit" href="/maildatas/{{ $maildata->id }}/edit">編集</a>
+                    @can('isCorrectUser', $maildata)
+                        <a id="edit" href="/maildatas/{{ $maildata->id }}/edit">編集</a>
+                    @endcan
                     
                     <div class="calendar">
                         <p class="title">予定の追加</p>

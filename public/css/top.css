@@ -1,0 +1,17 @@
+main {
+    background-color: #33CC99;
+}
+
+.maildatas,.categories,.mail,.category,.gmail a {
+    background: orange;
+    padding: 10px 30px;
+    display: inline-block;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    padding-left: 5px;
+}

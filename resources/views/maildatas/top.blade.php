@@ -32,6 +32,11 @@
         <div class="category">
             <a href='/categories/create'>新規作成</a>
         </div>
+        
+        <h2>Gmailデータ取得</h2>
+        <div class="gmail">
+            <a href='/gmail'>データ取得</a>
+        </div>
     </body>
     
 </html>

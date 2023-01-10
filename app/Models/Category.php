@@ -15,22 +15,22 @@ class Category extends Model
     
     public function maildatas()
     {
-        return $this -> hasMany(Maildata::class,'categories_id');
+        return $this->hasMany(Maildata::class,'categories_id');
     }
     
     public function user()
     {
-        return $this -> belongsTo(User::class,'users_id');
+        return $this->belongsTo(User::class,'users_id');
     }
     
     public function getByCategory(int $limit_count = 5)
     {
-        return $this -> maildatas() -> with('category') -> orderBy('updated_at', 'DESC') -> paginate($limit_count);
+        return $this->maildatas()->with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
     public function getSearchByCategory($keyword, int $limit_count = 5)
     {
-        return $this -> maildatas() -> with('category') -> orderBy('updated_at', 'DESC') -> where('title', 'LIKE', "%{$keyword}%") -> paginate($limit_count);
+        return $this->maildatas()->with('category')->orderBy('updated_at', 'DESC')->where('title', 'LIKE', "%{$keyword}%")->paginate($limit_count);
     }
     
     protected $fillable = [

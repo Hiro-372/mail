@@ -1,3 +1,40 @@
+h1 {
+    font-size: 20px;
+}
+
+.calendar {
+    border-top: 2px solid #C0C0C0;
+    padding-top: 5px;
+}
+
+
+.calendar p .title {
+    font-size :20px;
+}
+
+.calendar p .subject {
+    font-size: 20px;
+    border: 2px solid rgba(0,0,0,0.5);
+}
+
+.calendar .button {
+    font-size: 18px;
+    padding-top: 2px;
+}
+
+.title {
+    font-size: 20px;
+}
+
+body {
+    padding-left: 5px;
+}
+
+.category p {
+    text-decoration: underline;
+    font-size: 20px;
+}
+
 .mail {
     border-top: 3px solid #333;
 }
@@ -9,7 +46,7 @@
     text-decoration: none;
 }
 
-.category a {
+.createcategory a {
     background: orange;
     padding: 10px 30px;
     display: inline-block;

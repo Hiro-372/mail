@@ -1,3 +1,7 @@
+<x-app-layout>
+    <x-slot name="header">
+        {{ __('IndexCategory') }}
+    </x-slot>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     
@@ -22,23 +26,17 @@
                 <div class='maildata'>
                     <h2 class = 'title'>
                         <input class="title" id="title" type="checkbox" name="title[]" form="deleteMail" value={{ $maildata->id }}>
-                        <a href="/maildatas/{{ $maildata->id }}"> {{ $maildata->title}}</a>
+                        <a href="/maildatas/{{ $maildata->id }}"> {{ $maildata->title }}</a>
                     </h2>
                     <p class = 'message'>{{ $maildata->message }}</p>
                     <p class = 'date'>{{ $maildata->date }}</p>
                     
                     <p>カテゴリー:
-                    <a href="/categories/{{ $maildata->category->id}}">{{ $maildata->category->name }}</a>
+                    <a href="/categories/{{ $maildata->category->id }}">{{ $maildata->category->name }}</a>
                     </p>
                     
                     <a id="edit" href="/maildatas/{{ $maildata->id }}/edit">編集</a>
 
-                    <form action="/categories/{{ $category->id }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <input name="deleteMailByCategory" type="hidden" value="{{ $maildata->id }}">
-                        <button type="submit">削除</button>
-                    </form>
                 </div>
             @empty
                 <h2 id="message">メールデータが見つかりません！</h2>
@@ -79,3 +77,4 @@
     </body>
     
 </html>
+</x-app-layout>

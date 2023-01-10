@@ -23,25 +23,36 @@
         <h1>メール一覧</h1>
         <div class='maildatas'>
             @forelse($maildatas as $maildata)
-                <div class='maildata'>
+                <div class = 'maildata'>
                     <h2 class = 'title'>
                         <input class="title" id="title" type="checkbox" name="title[]" form="deleteMail" value={{ $maildata->id }}>
-                        <a href="/maildatas/{{ $maildata->id }}"> {{ $maildata->title}}</a>
+                        <a href = "/maildatas/{{ $maildata->id }}"> {{ $maildata->title}}</a>
                     </h2>
                     <p class = 'message'>{{ $maildata->message }}</p>
                     <p class = 'date'>{{ $maildata->date }}</p>
                     
-                    <p>カテゴリー:
-                    <a href="/categories/{{ $maildata->category->id }}">{{ $maildata->category->name }}</a>
-                    </p>
+                    <div class='category'>
+                        <p>カテゴリー:
+                        <a href="/categories/{{ $maildata->category->id }}">{{ $maildata->category->name }}</a>
+                        </p>
+                    </div>
                     
                     <a id="edit" href="/maildatas/{{ $maildata->id }}/edit">編集</a>
                     
-                    <form action="/maildatas/{{ $maildata->id }}" id="form_{{ $maildata->id }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" onclick="deleteMaildata({{ $maildata->id }})">削除</button>
-                    </form>
+                    <div class="calendar">
+                        <p class="title">予定の追加</p>
+                        <form action="/calendar" method="post">
+                            @csrf
+                            <p>
+                                件名<input class="subject" type="text" name="data[subject]" size="40" value="{{ $maildata->title }}"><br>
+                                詳細<textarea name="data[message]" cols="40"></textarea><br>
+                                受信日<input type="datetime-local" name="data[begin]"><br>
+                                期限日<input type="datetime-local" name="data[finish]">
+                            </p>
+                            <button class="button" type="submit" value="{{ $maildata->id }}">[カレンダーに追加]</button>
+                        </form>
+                    </div>
+                    
                 </div>
             @empty
                 <h2 id="message">メールデータが見つかりません！
@@ -62,7 +73,7 @@
             </form>
         </div>
 
-        <div class="category">
+        <div class="createcategory">
             <h3>カテゴリー</h3>
             <a href='/categories/create'>新規作成</a>
         </div>

@@ -1,3 +1,7 @@
+<x-app-layout>
+    <x-slot name="header">
+        {{ __('CategoryList') }}
+    </x-slot>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     
@@ -23,10 +27,10 @@
                 </div>
                 
                 <a href="/categories/{{ $category->id }}/edit">編集</a>
-                <form action="/categories/{{ $category->id }}" id="form_{{ $category->id }}" method="post">
+                <form action="/categories/{{ $category->id }}" method="post">
                     @csrf
                     @method('DELETE')            
-                    <button type="button" onclick="deleteCategory({{ $category->id }})">削除</button>
+                    <button type="submit">削除</button>
                 </form>
             @endforeach
         </div>
@@ -39,3 +43,4 @@
         </div>
     </body>
 </html>
+</x-app-layout>

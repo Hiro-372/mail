@@ -1,3 +1,7 @@
+<x-app-layout>
+    <x-slot name="header">
+        {{ __('Create') }}
+    </x-slot>
 <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -67,3 +71,4 @@
     </body>
     
 </html>
+</x-app-layout>

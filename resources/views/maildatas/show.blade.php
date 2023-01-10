@@ -1,3 +1,7 @@
+<x-app-layout>
+    <x-slot name="header">
+        {{ __('Show') }}
+    </x-slot>
 <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     
@@ -44,14 +48,10 @@
         
         <div class="footer">
             <p class="edit">[<a href="/maildatas/{{ $maildatas->id }}/edit">編集</a>]</p>
-            <form action="/maildatas/{{ $maildatas->id }}" id="form_{{ $maildatas->id }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="button" onclick="deleteMaildata({{ $maildatas->id }})">削除</button>
-            </form>
             <a href="/">[メール一覧へ]</a>
             <a href="/categories/list">[カテゴリー一覧へ]</a>
         </div>
     </body>
     
 </html>
+</x-app-layout>

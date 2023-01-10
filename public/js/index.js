@@ -1,15 +1,7 @@
-function deleteMaildata(id) {
+function pushCalendar(id) {
     'use strict';
     
-    if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
-        document.getElementById(`form_${id}`).submit();
-    }
-}
-
-function deleteCategory(id) {
-    'use strict';
-    
-    if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+    if (confirm('カレンダーに追加しますか？')) {
         document.getElementById(`form_${id}`).submit();
     }
 }

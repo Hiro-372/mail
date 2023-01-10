@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\MaildataRequest;
+use Illuminate\Support\Facades\Storage;
 
 class MaildataController extends Controller
 {
@@ -14,7 +15,7 @@ class MaildataController extends Controller
     {
         $keyword = $request->input('keyword');
         
-        $maildatas = empty($keyword) == true ? $maildata -> getByMaildata() : $maildata -> getSearchByMaildata($keyword);
+        $maildatas = empty($keyword) == true ? $maildata->getByMaildata() : $maildata->getSearchByMaildata($keyword);
         
         return view('maildatas/index')->with([
             'maildatas' => $maildatas,
@@ -25,59 +26,55 @@ class MaildataController extends Controller
     
     public function top(Maildata $maildata, Category $category)
     {
-        return view('maildatas/top') -> with([
-            'maildatas' => $maildata -> get(),
-            'categories' => $category -> get(),
+        return view('maildatas/top')->with([
+            'maildatas' => $maildata->get(),
+            'categories' => $category->get(),
         ]);
     }
     
     public function show(Maildata $maildata)
     {
-        return view('maildatas/show') -> with([
+        return view('maildatas/show')->with([
             'maildatas' => $maildata,
         ]);
     }
     
     public function create(Category $category, User $user)
     {
-        return view('maildatas/create') -> with([
-            'categories' => $category -> get(),
-            'users' => $user -> get(),
+        return view('maildatas/create')->with([
+            'categories' => $category->get(),
+            'users' => $user->get(),
         ]);
     }
     
     public function store(MaildataRequest $request, Maildata $maildata)
     {
         $input = $request['maildata'];
-        $maildata -> fill($input) -> save();
-        return redirect('/maildatas/' . $maildata -> id);
+        $maildata->fill($input)->save();
+        return redirect('/');
     }
     
     public function edit(Maildata $maildata, Category $category, User $user)
     {
         return view('maildatas/edit')->with([
             'maildata' => $maildata,
-            'categories' => $category -> get(),
-            'users' => $user -> get(),
+            'categories' => $category->get(),
+            'users' => $user->get(),
         ]);
     }
     
     public function update(MaildataRequest $request, Maildata $maildata)
     {
         $input_maildata = $request['maildata'];
-        $maildata -> fill($input_maildata) -> save();
-        return redirect('/maildatas/' . $maildata -> id);
+        $maildata->fill($input_maildata)->save();
+        return redirect('/maildatas/' . $maildata->id);
     }
     
     public function delete(Maildata $maildata, Request $request)
     {
-        if (empty($maildata) == true) {
-            return redirect('/');
-        } elseif (!empty($request["title"]) == true) {
-            foreach ($request["title"] as $value) {
-                $maildata::where('id',$value) -> delete(); }
-        } else {
-            $maildata -> delete();
+        if (!empty($request["title"])) {
+            //複数の削除対象がある場合全て削除
+            $maildata->whereIn('id',$request['title'])->delete();
         }
         return redirect('/');
     }

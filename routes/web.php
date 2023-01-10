@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaildataController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GoogleCalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::controller(CategoryController::class)->middleware(['auth'])->group(functi
     Route::put('/categories/{category}', 'update');
     Route::get('/categories/{category}', 'index');
     Route::delete('/categories/{category}', 'delete');
+});
+
+Route::controller(GoogleCalendarController::class)->middleware(['auth'])->group(function(){
+  Route::post('/calendar', [GoogleCalendarController::class, 'index']);  
 });
 
 Route::get('/dashboard', function () {

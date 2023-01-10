@@ -15,22 +15,22 @@ class Maildata extends Model
     
     public function category()
     {
-        return $this -> belongsTo(Category::class,'categories_id');
+        return $this->belongsTo(Category::class,'categories_id');
     }
     
     public function user()
     {
-        return $this -> belongsTo(User::class,'users_id');
+        return $this->belongsTo(User::class,'users_id');
     }
     
     public function getByMaildata(int $limit_count = 5)
     {
-        return $this -> orderBy('updated_at') -> paginate($limit_count);
+        return $this->orderBy('updated_at')->paginate($limit_count);
     }
     
     public function getSearchByMaildata($keyword, int $limit_count = 5)
     {
-        return $this -> orderBy('updated_at', 'DESC') -> where('title', 'LIKE', "%{$keyword}%") -> paginate($limit_count);
+        return $this->orderBy('updated_at', 'DESC')->where('title', 'LIKE', "%{$keyword}%")->paginate($limit_count);
     }
     
     protected $fillable = [
